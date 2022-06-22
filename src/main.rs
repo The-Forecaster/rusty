@@ -1,6 +1,8 @@
-use std::{net::{SocketAddrV4, Ipv4Addr}, thread, io::stdin};
+use std::{net::{SocketAddrV4, Ipv4Addr, UdpSocket}, io::stdin};
 
-fn main() {
+use local_ip_address::Error;
+
+fn main() -> Result<(), Error> {
     let scanner = stdin();
 
     let a = 0;
@@ -8,19 +10,25 @@ fn main() {
     let c = 0;
     let d = 0;
 
-    stdin().read_line(&mut a.to_string()).unwrap();
-    stdin().read_line(&mut b.to_string()).unwrap();
-    stdin().read_line(&mut c.to_string()).unwrap();
-    stdin().read_line(&mut d.to_string()).unwrap();
+    println!("Enter in the first octet of the target here");
+    scanner.read_line(&mut a.to_string()).unwrap();
+    println!("Second octet");
+    scanner.read_line(&mut b.to_string()).unwrap();
+    println!("Third...");
+    scanner.read_line(&mut c.to_string()).unwrap();
+    println!("Final octet");
+    scanner.read_line(&mut d.to_string()).unwrap();
 
-    let main = thread::spawn(move || {
+    let connection = UdpSocket::bind(SocketAddrV4::new(Ipv4Addr::new(a, b, c, d), 0)).ok().unwrap();
 
-        for i in 1..65500 {
-            spam(a, b, c, d, i)
+    println!("Checking ports on the target: ");
+    for i in 1..65500 {
+        if !connection.local_addr().is_err() {
+            connection.local_addr().unwrap().set_port(i);
+
+            connection.send(&[0, 0, 0, 0]).and_then(|_| { Ok(println!("port {} is open", i)) }).expect("");
         }
-    });
-}
+    }
 
-fn spam(a: u8, b: u8, c: u8, d: u8, port: u16) {
-    let sock = SocketAddrV4::new(Ipv4Addr::new(a, b, c, d), port);
+    Ok(())
 }
