@@ -1,6 +1,4 @@
-use std::{net::{SocketAddrV4, Ipv4Addr, UdpSocket}, io::stdin};
-
-use local_ip_address::Error;
+use std::{net::{SocketAddrV4, Ipv4Addr, UdpSocket}, io::{stdin, Error}};
 
 fn main() -> Result<(), Error> {
     let scanner = stdin();
