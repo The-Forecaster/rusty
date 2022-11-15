@@ -1,3 +1,2 @@
-# Yeah
 
-## Will improve this as I add to the project
+Gonna try to make an operating system entrirely written in rust in this repository
