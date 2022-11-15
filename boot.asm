@@ -1,4 +1,4 @@
-bits 16
+its 16
 
 mov ax, 0x07C0
 mov ds, ax
@@ -12,6 +12,7 @@ push 0x0000
 call movecursor
 add sp, 2
 
+push msg
 call print
 add sp, 2
 
@@ -72,5 +73,8 @@ print:
     pop bp
     ret
 
-times 510-($-$$) db 0
+
+msg:    db "Oh boy do I sure love assembly!", 0
+
+times 510-(\$-$$) db 0
 dw 0xAA55
