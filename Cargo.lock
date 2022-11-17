@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "rusty-master"
-version = "0.1.0"
+name = "rusty"
+version = "0.0.1"
