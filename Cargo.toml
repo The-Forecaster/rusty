@@ -1,5 +1,3 @@
-cargo-features = ["test-dummy-unstable"]
-
 [package]
 name = "rusty"
 version = "0.0.1"
