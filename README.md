@@ -3,9 +3,18 @@
 Gonna try to make an operating system entrirely written in rust in this repository
 
 ## Building
+<details>
+    <summary>The OS </summary>
+    ### install rustup [here](https://rustup.rs/)
+    ### navigate to the repository where this code is and run 'rustup toolchain install nightly'
+    ### run 'rustup override set nightly'
+    ### run 'rustup component add rust-src --toolchain nightly-x86_64-pc-windows-msvc'
+    ### finally run 'cargo build' and the binary should be in /target/x86_64-rusty/debug/
+</details>
 
-1. install rustup [here](https://rustup.rs/)
-2. navigate to the repository where this code is and run 'rustup toolchain install nightly'
-3. run 'rustup override set nightly'
-4. run 'rustup component add rust-src --toolchain nightly-x86_64-pc-windows-msvc'
-5. finally run 'cargo build' and the binary should be in /target/x86_64-rusty/debug/
+<details>
+    <summary>The bootloader</summary>
+    ### install NASM [here](https://www.nasm.us/)
+    ### navigate to the directory where NASM installed
+    ### create a new empty file called 'boot.com'
+    ### run  nasm -f bin /(Directory where this was extracted to)/boot.asm -o /(Directory where this was extracted to)/boot.com
