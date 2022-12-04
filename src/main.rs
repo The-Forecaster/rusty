@@ -16,12 +16,12 @@ static HELLO: &[u8] = b"Hello World!";
 pub extern "C" fn _start() -> ! {
     let vga_buffer = 0xb8000 as *mut u8; // Buffer where we print the text
 
-    for (i, &byte) in HELLO.iter().enumerate() {
+    for (i, &byte) in HELLO.iter().enumerate() { // Make this into a tuple list of (index, item)
         unsafe {
-            *vga_buffer.offset(i as isize * 2) = byte;
-            *vga_buffer.offset(i as isize * 2 + 1) = 0xb;
+            *vga_buffer.offset(i as isize * 2) = byte; // put the byte into the offset
+            *vga_buffer.offset(i as isize * 2 + 1) = 0xb; // reset the offset
         }
     }
 
-    loop {}
+    loop {} // Loop forever so the PC doesn't shut off
 }
