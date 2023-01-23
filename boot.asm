@@ -4,7 +4,7 @@ mov ax, 0x07C0
 mov ds, ax
 mov ax, 0x07E0      ; 07E0h = (07C00h+200h)/10h, beginning of stack segment.
 mov ss, ax
-mov sp, 0x2000      ; 8k of stack space.
+mov sp, 0x2000      ; 8192 bits of stack space.
 
 call clearscreen
 
